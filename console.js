@@ -1,20 +1,20 @@
-var host = "ws://10.10.100.254:81";	
+var host = "ws://10.10.100.254:81"; 
 var socket;
 var receivedConfig;
 var lastCommand;
 
 function connect(){
-	try{
-		socket = new WebSocket(host);
+  try{
+    socket = new WebSocket(host);
         console.log('Socket Status: '+socket.readyState);
 
         socket.onopen = function(){
-       		 console.log('Socket Status: '+socket.readyState+' (open)');
+           console.log('Socket Status: '+socket.readyState+' (open)');
         }
 
         socket.onmessage = function(msg){
-        	if (msg.data.length) {
-        	  receivedConfig = msg.data;
+          if (msg.data.length) {
+            receivedConfig = msg.data;
             
             if (lastCommand == 8008) { // Asked for the id of the active controller; 
               var chars = msg.data.split(":");
@@ -36,32 +36,32 @@ function connect(){
               }
 
             }
-			      console.log("message", receivedConfig);
-       		  updateConfig();
-        	} else {
-        	  console.log("received empty string");
-        	}
+            console.log("message", receivedConfig);
+            updateConfig();
+          } else {
+            console.log("received empty string");
+          }
         }
 
         socket.onclose = function(){
-       		 console.log('Socket Status: '+socket.readyState+' (Closed)');
-        }			
+           console.log('Socket Status: '+socket.readyState+' (Closed)');
+        }     
 
     } catch(exception){
-   		 console.log('Error: '+ exception);
+       console.log('Error: '+ exception);
     }
 }
 
 
 function send() {
-	var command = document.getElementById('command').value;
-	var payload = document.getElementById("config").value;
-	var request = command + ":" + payload;
+  var command = document.getElementById('command').value;
+  var payload = document.getElementById("config").value;
+  var request = command + ":" + payload;
   lastCommand = command;
-	socket.send(request);
-	console.log(request);
+  socket.send(request);
+  console.log(request);
 }
 
 function updateConfig() {
-	document.getElementById("config").innerHTML = JSON.parse(JSON.stringify(receivedConfig, undefined, 2));
+  document.getElementById("config").innerHTML = JSON.parse(JSON.stringify(receivedConfig, undefined, 2));
 }
