@@ -1,3 +1,5 @@
+var config = 
+
 {
   "modules" : {
     "radio" : 0,
@@ -6,12 +8,12 @@
   },
 
   "wifi" : {
-    "ssid"     : "FARADAY200",
+    "ssid"     : "Freshfaraday",
     "port"     : 8899,
     "ip"       : [10, 10, 100, 254],
     "subnet"   : [255, 255, 255, 0],
     "channel"  : 11,
-    "pass"     : "faraday200"
+    "pass"     : "freshfaraday"
   },
 
   "websocket" : {
@@ -35,8 +37,11 @@
     "defaultCurrentAccelerationMax" : 30
   },
 
-  "motorCount" : 4,
-  "wiredDevices" : [
+  "motorCount" : 2,
+
+  "authorizedControllers" : [1, 2, 3, 4, 5],
+
+  "registeredControllers" : [
     {
       "id" : "ACCE1",
       "type" : 3,

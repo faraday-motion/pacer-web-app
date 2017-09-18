@@ -18,16 +18,29 @@
    </div>
     <div class="container content-box">
       <div class="row">
-        <div class="col-md-6 col-md-offset-2">
-           <h1>Faraday Motion Web App version 0.1</h1>
+        <h1>Faraday Motion Web App version 0.1</h1>
+        <div class="col-50">
+            <h3>Request</h3>
             <div class="form-group">
               <p class="strong">Command</p>
-              <input class="form-input" type="text" class="form-control" id="command">
+              <select name="" id="command">
+                <option value="8001">Log:: Enable </option>
+                <option value="8002">Log:: Disable </option>
+                <option value="8003">Log:: Add Target</option>
+                <option value="8004">Log:: Remove Target</option>
+                <option value="8005">Log:: Set Level</option>
+                <option value="8006">Configuration:: Get </option>
+                <option value="8007">Configuration:: Set</option>
+                <option value="8008">Controller: Get Active</option>
+                <option value="8009">Controller: Set Active</option>
+                <option value="8010">Controller: Unset Active</option>
+                <option value="8011">Controller: Get All Registered</option>
+              </select>
               
-              <p class="strong">Request/Response</p>
-              <textarea id="config" cols="50" rows="25"></textarea>
+              <p class="strong">Payload (Optional)</p>
+              <textarea id="payload" style="width:100%" rows="25"></textarea>
 
-              <button onClick="event.preventDefault();send()" class="btn btn-default">Send Command</button>
+              <button onClick="event.preventDefault();sendRequest()" class="btn btn-default">Send Command</button>
               <button onClick="event.preventDefault();connect()" class="btn btn-default">Connect</button>
             </div>
 
@@ -49,13 +62,16 @@
               CTRL_GET_ALL          = 8011,
             </pre>
         </div>
+        <div class="col-50">
+          <h3>Response</h3>
+           <pre id="response">empty</pre>
+        </div>
       </div>
     </div>
 
-    <script src="console.js"></script>
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="js/bootstrap.min.js"></script>
+    <script src="js/default_config.js"></script>
+    <script src="js/console.js"></script>
+    <script src="js/websocket.js"></script>
+
   </body>
 </html>
